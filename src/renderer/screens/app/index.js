@@ -10,6 +10,7 @@ import {
   LinkBox,
   LinkOverlay,
   IconButton,
+  Fade,
 } from "@chakra-ui/react";
 import ScreenWrapper from "../../layout/ScreenWrapper";
 import {
@@ -42,26 +43,22 @@ const AppScreen = () => {
 
   return (
     <ScreenWrapper>
-      <Stack
-        //bg="#222"
-        spacing={16}
-        p="8px"
-        w="100%"
-        h="100%"
-      >
-        <Header>
-          <Clock />
-          <Weather />
-        </Header>
-        <Main>
-          <LocationProvider history={history}>
-            <Router>
-              <Dashboard path="/" />
-              <Calendar path="calendar" />
-              <DailyVerse path="daily-verse" />
-            </Router>
-          </LocationProvider>
-        </Main>
+      <Stack spacing={8} p="8px" w="100%" h="100%">
+        <Fade in={true}>
+          <Header>
+            <Clock />
+            <Weather />
+          </Header>
+          <Main>
+            <LocationProvider history={history}>
+              <Router>
+                <Dashboard path="/" />
+                <Calendar path="calendar" />
+                <DailyVerse path="daily-verse" />
+              </Router>
+            </LocationProvider>
+          </Main>
+        </Fade>
       </Stack>
     </ScreenWrapper>
   );

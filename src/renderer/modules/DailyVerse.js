@@ -16,13 +16,7 @@ import useFetch from "../utils/hooks/useFetch";
 import { Heading2 } from "../components";
 import Footer from "../layout/Footer";
 import { FiArrowLeft } from "react-icons/fi";
-import {
-  Link as ReachLink,
-  createHistory,
-  createMemorySource,
-  LocationProvider,
-  navigate,
-} from "@reach/router";
+import { Link as ReachLink } from "@reach/router";
 
 const DailyVerse = () => {
   const { getVerse, verse, isLoading } = useFetch();
@@ -43,7 +37,7 @@ const DailyVerse = () => {
       )}
       {verse && !isLoading && (
         <Fade in={true}>
-          <Stack spacing={8}>
+          <Stack spacing={4}>
             <Heading2 fontSize="4xl" fontWeight="thin">
               Verse of the day
             </Heading2>

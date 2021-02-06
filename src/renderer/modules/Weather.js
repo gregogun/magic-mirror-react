@@ -4,7 +4,7 @@ import { useFetch } from "../utils/hooks";
 import { FiCloud } from "react-icons/fi";
 
 const Weather = () => {
-  const { getWeather, weather } = useFetch();
+  const { getWeather, weather, isLoading } = useFetch();
 
   useEffect(getWeather, []);
 
@@ -12,7 +12,8 @@ const Weather = () => {
 
   return (
     <Box>
-      {weather ? (
+      {!weather && !isLoading && <Text>No weather...</Text>}
+      {weather && (
         <Stack spacing={4} direction="row" alignItems="center">
           <Flex direction="column">
             <Text fontSize="2xl">{weather.name}</Text>
@@ -23,8 +24,6 @@ const Weather = () => {
           </Flex>
           <Text fontSize="4xl">{temperature}°</Text>
         </Stack>
-      ) : (
-        <Text>No weather...</Text>
       )}
     </Box>
   );

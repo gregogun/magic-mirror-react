@@ -11,6 +11,7 @@ const useFetch = () => {
     axios.get("http://localhost:8888/calendar").then(
       (res) => {
         if (res.data.length !== 0) {
+          console.log(res.data);
           setEvents(res.data);
         } else {
           setEvents(null);
@@ -18,6 +19,7 @@ const useFetch = () => {
         setIsLoading(false);
       },
       (err) => {
+        setIsLoading(false);
         console.log(err);
       }
     );
@@ -30,6 +32,7 @@ const useFetch = () => {
         setIsLoading(false);
       },
       (err) => {
+        setIsLoading(false);
         console.log(err);
       }
     );

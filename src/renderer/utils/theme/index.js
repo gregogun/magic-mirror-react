@@ -17,6 +17,12 @@ const theme = extendTheme({
     choice2: "Poppins, sans-serif",
     choice3: "Roboto Mono, monospace",
   },
+  fontSizes: {
+    "7xl": "80px",
+    "8xl": "96px",
+    "10xl": "112px",
+    "11xl": "128px",
+  },
 });
 
 export default theme;

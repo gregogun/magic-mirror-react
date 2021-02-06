@@ -5,8 +5,6 @@ const app_id = process.env.WEATHER_API_KEY;
 
 const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?q=Bedford&units=metric&appid=`;
 
-console.log(`${BASE_URL}${app_id}`);
-
 exports.getWeather = (req, res) => {
   axios
     .get(`${BASE_URL}${app_id}`)
