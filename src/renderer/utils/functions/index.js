@@ -1,1 +1,1 @@
-export { default as convertTime } from "./convertTime";
+export * from "./convertTime";

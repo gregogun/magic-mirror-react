@@ -3,16 +3,19 @@ import axios from "axios";
 
 const useFetch = () => {
   const [events, setEvents] = useState();
-  const [eventLoading, setEventLoading] = useState();
   const [verse, setVerse] = useState();
-  const [verseLoading, setVerseLoading] = useState();
+  const [weather, setWeather] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getEvents = () => {
-    setEventLoading(true);
     axios.get("http://localhost:8888/calendar").then(
       (res) => {
-        setEvents(res.data);
-        setEventLoading(false);
+        if (res.data.length !== 0) {
+          setEvents(res.data);
+        } else {
+          setEvents(null);
+        }
+        setIsLoading(false);
       },
       (err) => {
         console.log(err);
@@ -21,11 +24,22 @@ const useFetch = () => {
   };
 
   const getVerse = () => {
-    setVerseLoading(true);
     axios.get("http://localhost:8888/verse").then(
       (res) => {
         setVerse(res.data.verse.details);
-        setVerseLoading(false);
+        setIsLoading(false);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  };
+
+  const getWeather = () => {
+    axios.get("http://localhost:8888/weather").then(
+      (res) => {
+        console.log(res.data);
+        setWeather(res.data);
       },
       (err) => {
         console.log(err);
@@ -38,8 +52,9 @@ const useFetch = () => {
     events,
     getVerse,
     verse,
-    eventLoading,
-    verseLoading,
+    getWeather,
+    weather,
+    isLoading,
   };
 };
 
