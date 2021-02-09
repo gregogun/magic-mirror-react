@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
   CircularProgress,
   Collapse,
   Divider,
   Flex,
-  Heading,
   Icon,
   IconButton,
   Link,
@@ -20,7 +18,7 @@ import useFetch from "../utils/hooks/useFetch";
 import { Heading2 } from "../components";
 import Footer from "../layout/Footer";
 import { Link as ReachLink } from "@reach/router";
-import { FiArrowLeftCircle, FiChevronDown } from "react-icons/fi";
+import { FiArrowLeft, FiChevronDown } from "react-icons/fi";
 
 const Calendar = ({ ...props }) => {
   const { getEvents, events, isLoading } = useFetch();
@@ -51,17 +49,24 @@ const Calendar = ({ ...props }) => {
           </List>
         </Stack>
       )}
-
-      <Footer>
-        <Link as={ReachLink} to="/app">
-          <IconButton
-            variant="ghost"
-            _hover={{ variant: "ghost" }}
-            _active={{ variant: "ghost" }}
-            icon={<ReturnIcon />}
-          />
-        </Link>
-      </Footer>
+      <Flex
+        bg="red.200"
+        position="absolute"
+        bottom="4px"
+        left="16px"
+        bg="gray.200"
+      >
+        <Footer>
+          <Link as={ReachLink} to="/app">
+            <IconButton
+              variant="ghost"
+              _hover={{ variant: "ghost" }}
+              _active={{ variant: "ghost" }}
+              icon={<ReturnIcon />}
+            />
+          </Link>
+        </Footer>
+      </Flex>
     </Box>
   );
 };
@@ -114,7 +119,7 @@ const Event = ({ event, ...props }) => {
   );
 };
 const ReturnIcon = ({ ...props }) => {
-  return <Icon {...props} w="32px" h="32px" as={FiArrowLeftCircle} />;
+  return <Icon {...props} w="32px" h="32px" as={FiArrowLeft} />;
 };
 
 export default Calendar;

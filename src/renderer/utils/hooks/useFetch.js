@@ -17,7 +17,6 @@ const useFetch = () => {
     axios.get("http://localhost:8888/calendar").then(
       (res) => {
         if (res.data.length !== 0) {
-          console.log(res.data);
           setEvents(res.data);
         } else {
           setEvents(null);
@@ -34,7 +33,6 @@ const useFetch = () => {
   const getWeather = () => {
     axios.get("http://localhost:8888/weather").then(
       (res) => {
-        console.log(res.data);
         setWeather(res.data);
       },
       (err) => {
@@ -65,15 +63,12 @@ const useFetch = () => {
         })
         .then(() => {
           settings.get("verse.text").then((value) => {
-            console.log(value);
             setVerseText(value);
           });
           settings.get("verse.reference").then((value) => {
-            console.log(value);
             setVerseRef(value);
           });
           settings.get("verse.day").then((value) => {
-            console.log(value);
             setCurrentDay(value);
             setIsLoading(false);
           });
@@ -84,7 +79,6 @@ const useFetch = () => {
   const checkVerse = () => {
     settings.has("verse.day").then((bool) => {
       if (bool === true) {
-        console.log("the data exists!");
         settings.has("verse.day").then((bool) => {
           if (bool === true) {
             settings.get("verse.day").then((value) => {
@@ -92,15 +86,12 @@ const useFetch = () => {
                 fetchVerse();
               } else {
                 settings.get("verse.text").then((value) => {
-                  console.log(value);
                   setVerseText(value);
                 });
                 settings.get("verse.reference").then((value) => {
-                  console.log(value);
                   setVerseRef(value);
                 });
                 settings.get("verse.day").then((value) => {
-                  console.log(value);
                   setCurrentDay(value);
                   setIsLoading(false);
                 });
@@ -109,7 +100,6 @@ const useFetch = () => {
           }
         });
       } else {
-        console.log("data does not yet exists");
         fetchVerse();
       }
     });

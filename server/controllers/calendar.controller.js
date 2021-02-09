@@ -19,15 +19,21 @@ exports.getEvents = (req, res) => {
   const params = {
     calendarId: calendar_id,
     showDeleted: false,
+    singleEvents: true,
+    orderBy: "startTime",
   };
 
   const fetchEvents = calendar.events
     .list(params)
     .then((res) => {
       const events = res.data.items;
-      const currentEvents = events.filter(
-        (event) => event.start.dateTime.slice(0, 10) === currentISODate
-      );
+      const currentEvents = events.filter((event) => {
+        if (event.start.dateTime) {
+          return event.start.dateTime.slice(0, 10) === currentISODate;
+        } else {
+          return event.start.date === currentISODate;
+        }
+      });
       return currentEvents;
     })
     .catch((err) => console.log(err));
