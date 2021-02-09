@@ -1,12 +1,16 @@
 import { Box, Flex, Icon, Stack, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFetch } from "../utils/hooks";
-import { FiCloud } from "react-icons/fi";
+import { FiCloud, FiCloudRain, FiSun, FiMoon } from "react-icons/fi";
 
 const Weather = () => {
   const { getWeather, weather, isLoading } = useFetch();
 
-  useEffect(getWeather, []);
+  const condition = weather && weather.weather[0].main;
+
+  useEffect(() => {
+    getWeather();
+  }, []);
 
   const temperature = Math.floor(weather && weather.main.temp);
 

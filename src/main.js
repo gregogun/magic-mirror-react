@@ -17,6 +17,7 @@ const createWindow = () => {
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
 

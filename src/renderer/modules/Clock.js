@@ -1,40 +1,29 @@
 import { Button, Flex, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import useMeridian from "../utils/hooks/useMeridian";
 
-// intending to work this hook in later
-import { useDate } from "../utils/hooks";
-
-const currentTime = new Date().toISOString().slice(11, 13);
-
-const Meridian = ({ ...props }) => {
-  const [meridian, setMeridian] = useState(currentTime >= 12 ? "pm" : "am");
-
-  const checkAmPm = () => {
-    const current = new Date().toISOString().slice(11, 13);
-    if (current >= 12) {
-      setMeridian("pm");
-    } else {
-      setMeridian("am");
-    }
-  };
-
-  useEffect(() => {
-    setInterval(() => checkAmPm(), 1000);
-    return () => {
-      clearInterval();
-    };
-  }, [meridian]);
-
-  return <Text {...props}>{meridian}</Text>;
-};
-
-//const currentTime = convertTime(currentISODate);
+const getHour = new Date().getHours();
+const hour = getHour - 12;
+const minute = new Date().getMinutes();
+const second = new Date().getSeconds();
+const date = new Date();
+const currentTime = `${hour}:${minute}`;
 
 const Clock = () => {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState(currentTime);
 
   useEffect(() => {
-    setInterval(() => setTime(new Date()), 1000);
+    setInterval(
+      () =>
+        setTime(
+          `${
+            new Date().getHours() > 12
+              ? new Date().getHours() - 12
+              : new Date().getHours()
+          }:${new Date().getMinutes()}`
+        ),
+      1000
+    );
     return () => {
       clearInterval();
     };
@@ -42,16 +31,22 @@ const Clock = () => {
 
   return (
     <Flex direction="column" textAlign="center">
-      <Text fontSize="sm">{time.toString().slice(0, 15)}</Text>
+      <Text fontSize="sm">{date.toString().slice(0, 15)}</Text>
       <Flex fontSize="3xl" justify="center">
         <Text mr="4px">
-          {time.toString().slice(16, 21)}
+          {time}
           {""}
         </Text>
         <Meridian />
       </Flex>
     </Flex>
   );
+};
+
+const Meridian = ({ ...props }) => {
+  const { meridian } = useMeridian();
+
+  return <>{meridian && <Text {...props}>{meridian}</Text>}</>;
 };
 
 export default Clock;

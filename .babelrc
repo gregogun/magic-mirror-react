@@ -1,3 +1,11 @@
 {
-  "plugins": ["@emotion"]
+  "plugins": ["@emotion"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
+  ]
 }

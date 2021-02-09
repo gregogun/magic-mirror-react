@@ -18,24 +18,26 @@ import Footer from "../layout/Footer";
 import { FiArrowLeft } from "react-icons/fi";
 import { Link as ReachLink } from "@reach/router";
 
-const DailyVerse = () => {
-  const { getVerse, verse, isLoading } = useFetch();
+const DailyVerse = ({ ...props }) => {
+  const { checkVerse, verseText, verseRef, currentDay, isLoading } = useFetch();
 
-  useEffect(getVerse, []);
+  useEffect(checkVerse, []);
+
+  const padding = verseText && verseText > 200 ? 8 : 16;
 
   return (
-    <Box textAlign="center">
-      {!verse && !isLoading && (
+    <Box p={padding} textAlign="center">
+      {!verseText && !isLoading && (
         <Text>There was a problem getting your verse. Check back soon!</Text>
       )}
-      {!verse && isLoading && (
+      {!verseText && isLoading && (
         <CircularProgress
           isIndeterminate
           trackColor="transparent"
           color="white"
         />
       )}
-      {verse && !isLoading && (
+      {verseText && !isLoading && (
         <Fade in={true}>
           <Stack spacing={4}>
             <Heading2 fontSize="4xl" fontWeight="thin">
@@ -43,18 +45,25 @@ const DailyVerse = () => {
             </Heading2>
             <Divider />
             <Stack>
-              <Text fontSize="2xl">"{verse.text}"</Text>
-              <Text fontSize="lg">{verse.reference}</Text>
+              <Text fontSize="2xl">"{verseText}"</Text>
+              <Text fontSize="lg">{verseRef}</Text>
             </Stack>
           </Stack>
         </Fade>
       )}
-      <Flex bg="red.200" position="absolute" bottom="8px" bg="gray.200">
+      <Flex
+        bg="red.200"
+        position="absolute"
+        bottom="4px"
+        left="16px"
+        bg="gray.200"
+      >
         <Footer>
           <Link as={ReachLink} to="/app">
             <IconButton
               variant="ghost"
               _hover={{ variant: "ghost" }}
+              _active={{ variant: "ghost" }}
               icon={<ReturnIcon />}
             />
           </Link>

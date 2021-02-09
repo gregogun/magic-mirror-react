@@ -22,13 +22,15 @@ import Footer from "../layout/Footer";
 import { Link as ReachLink } from "@reach/router";
 import { FiArrowLeftCircle, FiChevronDown } from "react-icons/fi";
 
-const Calendar = () => {
+const Calendar = ({ ...props }) => {
   const { getEvents, events, isLoading } = useFetch();
 
   useEffect(getEvents, []);
 
+  const padding = events && events.length > 2 ? 8 : 16;
+
   return (
-    <Box textAlign="center">
+    <Box p={padding} textAlign="center">
       {!events && !isLoading && <Text>No events today...</Text>}
       {!events && isLoading && (
         <CircularProgress
@@ -55,6 +57,7 @@ const Calendar = () => {
           <IconButton
             variant="ghost"
             _hover={{ variant: "ghost" }}
+            _active={{ variant: "ghost" }}
             icon={<ReturnIcon />}
           />
         </Link>
@@ -70,7 +73,15 @@ const Event = ({ event, ...props }) => {
   const endIsoDate = event.end.dateTime.toString().slice(11, 16);
 
   return (
-    <ListItem mx="auto" p="8px" borderBottom="1px solid" {...props} w="80%">
+    <ListItem
+      rounded={8}
+      mx="auto"
+      p="8px"
+      bg="#fff"
+      color="#000"
+      {...props}
+      w="80%"
+    >
       <Flex alignItems="center" justify="space-between">
         <Stack direction="row">
           <Text>{event.summary}</Text>
@@ -92,8 +103,8 @@ const Event = ({ event, ...props }) => {
         </Flex>
       </Flex>
       <Collapse in={isOpen} animateOpacity>
+        <Divider />
         <Stack p="4px">
-          <Divider />
           <Text>
             {event.description ? event.description : "No description provided."}
           </Text>

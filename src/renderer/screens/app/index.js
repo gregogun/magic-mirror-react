@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Flex,
@@ -26,20 +26,13 @@ import DailyVerse from "../../modules/DailyVerse";
 import Header from "../../layout/Header";
 import Main from "../../layout/Main";
 import { Heading2 } from "../../components";
-import { FiCalendar, FiBookOpen, FiArrowLeft } from "react-icons/fi";
+import { FiCalendar, FiBookOpen } from "react-icons/fi";
 import { Clock, Weather } from "../../modules";
-import Footer from "../../layout/Footer";
+import Test from "../../modules/Test";
 
 const AppScreen = () => {
   const source = createMemorySource("/app");
   const history = createHistory(source);
-  const [prevLocation, setPrevLocation] = useState(source);
-
-  console.log(prevLocation);
-
-  const goBack = () => {
-    navigate(prevLocation);
-  };
 
   return (
     <ScreenWrapper>
@@ -55,6 +48,7 @@ const AppScreen = () => {
                 <Dashboard path="/" />
                 <Calendar path="calendar" />
                 <DailyVerse path="daily-verse" />
+                <Test path="test" />
               </Router>
             </LocationProvider>
           </Main>
@@ -68,7 +62,7 @@ const Line = () => {
   return <Box bg="#fff" w="100%" h="1px" />;
 };
 
-const ModuleLink = ({ icon, to, ...props }) => {
+const ModuleLink = ({ name, icon, to, ...props }) => {
   return (
     <LinkBox
       {...props}
@@ -84,30 +78,25 @@ const ModuleLink = ({ icon, to, ...props }) => {
       <LinkIcon icon={icon} />
       <Heading2>
         <LinkOverlay as={ReachLink} to={to}>
-          {to.charAt(0).toUpperCase()}
-          {to.slice(1)}
+          {name}
         </LinkOverlay>
       </Heading2>
     </LinkBox>
   );
 };
 
-const Dashboard = () => {
+const Dashboard = ({ ...props }) => {
   return (
-    <Stack mx="auto" w="80%" spacing={4}>
-      <ModuleLink icon={FiCalendar} to="calendar" />
+    <Stack p={16} mx="auto" w="80%" spacing={4}>
+      <ModuleLink name="Calendar" icon={FiCalendar} to="calendar" />
       <Line />
-      <ModuleLink icon={FiBookOpen} to="daily-verse" />
+      <ModuleLink name="Daily Verse" icon={FiBookOpen} to="daily-verse" />
     </Stack>
   );
 };
 
 const LinkIcon = ({ icon }) => {
   return <Icon mr="24px" w="32px" h="32px" as={icon} />;
-};
-
-const ReturnIcon = ({ ...props }) => {
-  return <Icon {...props} w="24px" h="24px" as={FiArrowLeft} />;
 };
 
 export default AppScreen;
