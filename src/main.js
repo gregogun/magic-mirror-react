@@ -19,13 +19,22 @@ const createWindow = () => {
       nodeIntegration: true,
       enableRemoteModule: true,
     },
+    frame: false,
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
+  //enable kiosk mode
+  mainWindow.setKiosk(true);
+
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  mainWindow.webContents.on("crashed", (e) => {
+    app.relaunch();
+    app.quit();
+  });
 };
 
 // This method will be called when Electron has finished
