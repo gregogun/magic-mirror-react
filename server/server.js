@@ -22,12 +22,6 @@ app.get("/weather", weatherController.getWeather);
 
 app.get("/test", jobController.test);
 
-// console.log("logging every minute");
-
-// cron.schedule("* * * * *", () => {
-//   console.log("logging every minute");
-// });
-
 const port = process.env.PORT || 8888;
 console.log(`Listening on port ${port}.`);
 app.listen(port);

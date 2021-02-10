@@ -14,7 +14,7 @@ const useFetch = () => {
   const day = new Date().getDay();
 
   const getEvents = () => {
-    axios.get("http://localhost:8888/calendar").then(
+    axios.get("https://go-magic-mirror.herokuapp.com/calendar").then(
       (res) => {
         if (res.data.length !== 0) {
           setEvents(res.data);
@@ -31,7 +31,7 @@ const useFetch = () => {
   };
 
   const getWeather = () => {
-    axios.get("http://localhost:8888/weather").then(
+    axios.get("https://go-magic-mirror.herokuapp.com/weather").then(
       (res) => {
         setWeather(res.data);
       },
@@ -43,7 +43,7 @@ const useFetch = () => {
 
   const fetchVerse = () => {
     const getVerse = () => {
-      return axios.get("http://localhost:8888/verse").then(
+      return axios.get("https://go-magic-mirror.herokuapp.com/verse").then(
         (res) => {
           return res.data.verse.details;
         },

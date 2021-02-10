@@ -7,7 +7,9 @@ const hour = getHour - 12;
 const minute = new Date().getMinutes();
 const second = new Date().getSeconds();
 const date = new Date();
-const currentTime = `${hour}:${minute < 10 ? `0${minute}` : minute}`;
+const currentTime = `${new Date().getHours()}:${
+  minute < 10 ? `0${minute}` : minute
+}`;
 
 const Clock = () => {
   const [time, setTime] = useState(currentTime);
