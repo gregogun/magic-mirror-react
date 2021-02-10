@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  useContext,
+} from "react";
 import {
   Box,
   Flex,
@@ -11,6 +17,7 @@ import {
   LinkOverlay,
   IconButton,
   Fade,
+  Button,
 } from "@chakra-ui/react";
 import ScreenWrapper from "../../layout/ScreenWrapper";
 import {
@@ -18,7 +25,6 @@ import {
   createMemorySource,
   Link as ReachLink,
   LocationProvider,
-  navigate,
   Router,
 } from "@reach/router";
 import Calendar from "../../modules/Calendar";
@@ -29,11 +35,13 @@ import { Heading2 } from "../../components";
 import { FiCalendar, FiBookOpen } from "react-icons/fi";
 import { Clock, Weather } from "../../modules";
 import Test from "../../modules/Test";
+// import { io } from "socket.io-client";
+import { history, navigate } from "../../utils/hooks/useHistory";
+import SocketContext from "../../utils/context/socketContext";
+
+// const socket = io.connect("http://localhost:8888/");
 
 const AppScreen = () => {
-  const source = createMemorySource("/app");
-  const history = createHistory(source);
-
   return (
     <ScreenWrapper>
       <Stack spacing={8} p="8px" w="100%" h="100%">
@@ -86,9 +94,28 @@ const ModuleLink = ({ name, icon, to, ...props }) => {
 };
 
 const Dashboard = ({ ...props }) => {
+  const socket = useContext(SocketContext);
+
+  socket.on("home", () => {
+    navigate("app/dashboard");
+  });
+
+  socket.on("calendar", () => {
+    navigate("app/calendar");
+  });
+
+  socket.on("verse", () => {
+    navigate("app/daily-verse");
+  });
+
   return (
     <Stack p={16} mx="auto" w="80%" spacing={4}>
-      <ModuleLink name="Calendar" icon={FiCalendar} to="calendar" />
+      <ModuleLink
+        socket={socket}
+        name="Calendar"
+        icon={FiCalendar}
+        to="calendar"
+      />
       <Line />
       <ModuleLink name="Daily Verse" icon={FiBookOpen} to="daily-verse" />
     </Stack>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   CircularProgress,
@@ -19,9 +19,17 @@ import { Heading2 } from "../components";
 import Footer from "../layout/Footer";
 import { Link as ReachLink } from "@reach/router";
 import { FiArrowLeft, FiChevronDown } from "react-icons/fi";
+import { navigate } from "../utils/hooks/useHistory";
+import SocketContext from "../utils/context/socketContext";
 
 const Calendar = ({ ...props }) => {
   const { getEvents, events, isLoading } = useFetch();
+  const socket = useContext(SocketContext);
+
+  socket.on("home", () => {
+    console.log("home received");
+    navigate("/app");
+  });
 
   useEffect(getEvents, []);
 

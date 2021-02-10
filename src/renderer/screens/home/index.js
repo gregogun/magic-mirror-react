@@ -22,7 +22,7 @@ const HomeScreen = () => {
           <Heading1>Hello Tina</Heading1>
           <Text fontWeight="light" fontSize="2xl">
             <LinkOverlay as={Link} to="/app">
-              Tap anywhere to begin
+              Click start on your remote to begin
             </LinkOverlay>
           </Text>
           <PulsingCircle />

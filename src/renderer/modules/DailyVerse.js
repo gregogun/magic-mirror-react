@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   CircularProgress,
@@ -17,9 +17,16 @@ import { Heading2 } from "../components";
 import Footer from "../layout/Footer";
 import { FiArrowLeft } from "react-icons/fi";
 import { Link as ReachLink } from "@reach/router";
+import { navigate } from "../utils/hooks/useHistory";
+import SocketContext from "../utils/context/socketContext";
 
 const DailyVerse = ({ ...props }) => {
   const { checkVerse, verseText, verseRef, currentDay, isLoading } = useFetch();
+  const socket = useContext(SocketContext);
+
+  socket.on("home", () => {
+    navigate("/app");
+  });
 
   useEffect(checkVerse, []);
 
