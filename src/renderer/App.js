@@ -5,7 +5,7 @@ import Screens from "./screens";
 import SocketContext from "./utils/context/socketContext";
 import { io } from "socket.io-client";
 
-const socket = io.connect("http://localhost:8888/");
+const socket = io.connect("https://go-magic-mirror.herokuapp.com/");
 
 const App = () => {
   return (

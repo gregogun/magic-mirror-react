@@ -1,32 +1,7 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  forwardRef,
-  useContext,
-} from "react";
-import {
-  Box,
-  Flex,
-  Heading,
-  Stack,
-  Text,
-  Link,
-  Icon,
-  LinkBox,
-  LinkOverlay,
-  IconButton,
-  Fade,
-  Button,
-} from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Box, Stack, Icon, LinkBox, LinkOverlay, Fade } from "@chakra-ui/react";
 import ScreenWrapper from "../../layout/ScreenWrapper";
-import {
-  createHistory,
-  createMemorySource,
-  Link as ReachLink,
-  LocationProvider,
-  Router,
-} from "@reach/router";
+import { Link as ReachLink, LocationProvider, Router } from "@reach/router";
 import Calendar from "../../modules/Calendar";
 import DailyVerse from "../../modules/DailyVerse";
 import Header from "../../layout/Header";
@@ -35,17 +10,14 @@ import { Heading2 } from "../../components";
 import { FiCalendar, FiBookOpen } from "react-icons/fi";
 import { Clock, Weather } from "../../modules";
 import Test from "../../modules/Test";
-// import { io } from "socket.io-client";
 import { history, navigate } from "../../utils/hooks/useHistory";
 import SocketContext from "../../utils/context/socketContext";
-
-// const socket = io.connect("http://localhost:8888/");
 
 const AppScreen = () => {
   return (
     <ScreenWrapper>
       <Stack spacing={8} p="8px" w="100%" h="100%">
-        <Fade in={true}>
+        <Fade in={true} exit={true}>
           <Header>
             <Clock />
             <Weather />
@@ -96,10 +68,6 @@ const ModuleLink = ({ name, icon, to, ...props }) => {
 const Dashboard = ({ ...props }) => {
   const socket = useContext(SocketContext);
 
-  socket.on("home", () => {
-    navigate("app/dashboard");
-  });
-
   socket.on("calendar", () => {
     navigate("app/calendar");
   });
@@ -123,7 +91,7 @@ const Dashboard = ({ ...props }) => {
 };
 
 const LinkIcon = ({ icon }) => {
-  return <Icon mr="24px" w="32px" h="32px" as={icon} />;
+  return <Icon mr="24px" w="48px" h="48px" as={icon} />;
 };
 
 export default AppScreen;

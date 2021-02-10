@@ -1,14 +1,17 @@
-import { Button, Flex, Stack, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import useMeridian from "../utils/hooks/useMeridian";
 
 const getHour = new Date().getHours();
-const hour = getHour - 12;
-const minute = new Date().getMinutes();
-const second = new Date().getSeconds();
 const date = new Date();
-const currentTime = `${new Date().getHours()}:${
-  minute < 10 ? `0${minute}` : minute
+const currentTime = `${
+  new Date().getHours() > 12
+    ? new Date().getHours() - 12
+    : new Date().getHours()
+}:${
+  new Date().getMinutes() < 10
+    ? `0${new Date().getMinutes()}`
+    : new Date().getMinutes()
 }`;
 
 const Clock = () => {

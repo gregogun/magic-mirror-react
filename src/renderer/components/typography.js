@@ -11,7 +11,7 @@ export const Heading1 = ({ children, ...props }) => {
 
 export const Heading2 = ({ children, ...props }) => {
   return (
-    <Heading {...props} fontSize="4xl" fontWeight="normal">
+    <Heading {...props} fontSize="6xl" fontWeight="light">
       {children}
     </Heading>
   );

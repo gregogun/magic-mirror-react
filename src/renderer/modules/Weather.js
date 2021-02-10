@@ -1,14 +1,8 @@
 import { Box, Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../utils/hooks";
-import {
-  FiCloud,
-  FiCloudRain,
-  FiSun,
-  FiMoon,
-  FiCloudLightning,
-} from "react-icons/fi";
-import { FaSnowflake } from "react-icons/fa";
+import { FiCloud, FiSun, FiCloudLightning } from "react-icons/fi";
+import { FaSnowflake, FaSun } from "react-icons/fa";
 
 const Weather = () => {
   const { getWeather, weather, isLoading } = useFetch();
@@ -18,7 +12,7 @@ const Weather = () => {
   const weatherIcon = (condition) => {
     switch (condition) {
       case "Clear":
-        return FiClear;
+        return FiSun;
         break;
       case "Clouds":
         return FiCloud;

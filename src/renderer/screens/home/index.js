@@ -1,20 +1,17 @@
-import React from "react";
-import {
-  Box,
-  Text,
-  Heading,
-  Stack,
-  LinkOverlay,
-  LinkBox,
-  Center,
-  Fade,
-} from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Box, Text, Stack, LinkOverlay, LinkBox } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import ScreenWrapper from "../../layout/ScreenWrapper";
 import { Link } from "@reach/router";
-import { Heading1, Heading2 } from "../../components";
+import { Heading1 } from "../../components";
+import SocketContext from "../../utils/context/socketContext";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigate }) => {
+  const socket = useContext(SocketContext);
+
+  socket.on("start", () => {
+    navigate("/app");
+  });
   return (
     <ScreenWrapper>
       <LinkBox display="grid" placeItems="center" w="100%" h="100%">

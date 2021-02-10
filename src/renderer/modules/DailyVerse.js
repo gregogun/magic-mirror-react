@@ -1,22 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Box,
   CircularProgress,
   Divider,
   Fade,
-  Flex,
-  Heading,
   Icon,
-  IconButton,
-  Link,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import useFetch from "../utils/hooks/useFetch";
 import { Heading2 } from "../components";
-import Footer from "../layout/Footer";
 import { FiArrowLeft } from "react-icons/fi";
-import { Link as ReachLink } from "@reach/router";
 import { navigate } from "../utils/hooks/useHistory";
 import SocketContext from "../utils/context/socketContext";
 
@@ -58,24 +52,6 @@ const DailyVerse = ({ ...props }) => {
           </Stack>
         </Fade>
       )}
-      <Flex
-        bg="red.200"
-        position="absolute"
-        bottom="4px"
-        left="16px"
-        bg="gray.200"
-      >
-        <Footer>
-          <Link as={ReachLink} to="/app">
-            <IconButton
-              variant="ghost"
-              _hover={{ variant: "ghost" }}
-              _active={{ variant: "ghost" }}
-              icon={<ReturnIcon />}
-            />
-          </Link>
-        </Footer>
-      </Flex>
     </Box>
   );
 };

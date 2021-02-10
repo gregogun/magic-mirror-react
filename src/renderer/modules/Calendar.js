@@ -7,7 +7,6 @@ import {
   Flex,
   Icon,
   IconButton,
-  Link,
   List,
   ListItem,
   Stack,
@@ -16,8 +15,6 @@ import {
 } from "@chakra-ui/react";
 import useFetch from "../utils/hooks/useFetch";
 import { Heading2 } from "../components";
-import Footer from "../layout/Footer";
-import { Link as ReachLink } from "@reach/router";
 import { FiArrowLeft, FiChevronDown } from "react-icons/fi";
 import { navigate } from "../utils/hooks/useHistory";
 import SocketContext from "../utils/context/socketContext";
@@ -37,7 +34,7 @@ const Calendar = ({ ...props }) => {
 
   return (
     <Box p={padding} textAlign="center">
-      {!events && !isLoading && <Text>No events today...</Text>}
+      {!events && !isLoading && <Heading2 pt={8}>No events today...</Heading2>}
       {!events && isLoading && (
         <CircularProgress
           isIndeterminate
@@ -57,24 +54,6 @@ const Calendar = ({ ...props }) => {
           </List>
         </Stack>
       )}
-      <Flex
-        bg="red.200"
-        position="absolute"
-        bottom="4px"
-        left="16px"
-        bg="gray.200"
-      >
-        <Footer>
-          <Link as={ReachLink} to="/app">
-            <IconButton
-              variant="ghost"
-              _hover={{ variant: "ghost" }}
-              _active={{ variant: "ghost" }}
-              icon={<ReturnIcon />}
-            />
-          </Link>
-        </Footer>
-      </Flex>
     </Box>
   );
 };
