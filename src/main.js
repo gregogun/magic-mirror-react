@@ -29,7 +29,7 @@ const createWindow = () => {
   mainWindow.setKiosk(true);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 
   mainWindow.webContents.on("crashed", (e) => {
     app.relaunch();
