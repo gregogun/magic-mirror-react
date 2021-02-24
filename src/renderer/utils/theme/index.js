@@ -6,8 +6,16 @@ const theme = extendTheme({
     global: (props) => ({
       body: {
         overflow: "hidden",
+        cursor: "none",
         color: "#fff",
         bg: "#000",
+      },
+      a: {
+        cursor: "none",
+        _hover: {
+          textDecoration: "none",
+          cursor: "none",
+        },
       },
     }),
   },

@@ -48,6 +48,7 @@ const ModuleLink = ({ name, icon, to, ...props }) => {
       {...props}
       _hover={{
         textDecor: "none",
+        cursor: "none",
         boxShadow: " 0 0 0 2px",
         transitionDuration: "350ms",
       }}
