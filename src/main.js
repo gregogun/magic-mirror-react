@@ -19,14 +19,14 @@ const createWindow = () => {
       nodeIntegration: true,
       enableRemoteModule: true,
     },
-    frame: false,
+    //frame: false,
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   //enable kiosk mode
-  mainWindow.setKiosk(true);
+  // mainWindow.setKiosk(true);
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();
