@@ -1,42 +1,12 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import useMeridian from "../utils/hooks/useMeridian";
+import useTime from "../utils/hooks/useTime";
 
-const getHour = new Date().getHours();
 const date = new Date();
-const currentTime = `${
-  new Date().getHours() > 12
-    ? new Date().getHours() - 12
-    : new Date().getHours()
-}:${
-  new Date().getMinutes() < 10
-    ? `0${new Date().getMinutes()}`
-    : new Date().getMinutes()
-}`;
 
 const Clock = () => {
-  const [time, setTime] = useState(currentTime);
-
-  useEffect(() => {
-    setInterval(
-      () =>
-        setTime(
-          `${
-            new Date().getHours() > 12
-              ? new Date().getHours() - 12
-              : new Date().getHours()
-          }:${
-            new Date().getMinutes() < 10
-              ? `0${new Date().getMinutes()}`
-              : new Date().getMinutes()
-          }`
-        ),
-      1000
-    );
-    return () => {
-      clearInterval();
-    };
-  }, [time]);
+  const { time } = useTime();
 
   return (
     <Flex direction="column" textAlign="center">
