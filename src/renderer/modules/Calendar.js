@@ -24,7 +24,6 @@ const Calendar = ({ ...props }) => {
   const socket = useContext(SocketContext);
 
   socket.on("home", () => {
-    console.log("home received");
     navigate("/app");
   });
 

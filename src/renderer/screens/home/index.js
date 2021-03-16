@@ -16,10 +16,10 @@ const HomeScreen = ({ navigate }) => {
     <ScreenWrapper>
       <LinkBox display="grid" placeItems="center" w="100%" h="100%">
         <Stack alignItems="center" spacing={4}>
-          <Heading1>Hello Tina</Heading1>
-          <Text fontWeight="light" fontSize="2xl">
+          <Heading1>Welcome</Heading1>
+          <Text mb="1em" fontWeight="light" fontSize="2xl">
             <LinkOverlay as={Link} to="/app">
-              Click start on your remote to begin
+              Click start on your remote to enter
             </LinkOverlay>
           </Text>
           <PulsingCircle />

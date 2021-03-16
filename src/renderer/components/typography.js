@@ -9,9 +9,9 @@ export const Heading1 = ({ children, ...props }) => {
   );
 };
 
-export const Heading2 = ({ children, ...props }) => {
+export const Heading2 = ({ fontSize = "6xl", children, ...props }) => {
   return (
-    <Heading {...props} fontSize="6xl" fontWeight="light">
+    <Heading {...props} fontSize={fontSize} fontWeight="light">
       {children}
     </Heading>
   );

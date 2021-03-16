@@ -33,6 +33,7 @@ const useFetch = () => {
   const getWeather = () => {
     axios.get("https://go-magic-mirror.herokuapp.com/weather").then(
       (res) => {
+        console.log(res.data);
         setWeather(res.data);
       },
       (err) => {

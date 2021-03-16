@@ -1,5 +1,15 @@
 import React, { useContext } from "react";
-import { Box, Stack, Icon, LinkBox, LinkOverlay, Fade } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  Icon,
+  LinkBox,
+  LinkOverlay,
+  Fade,
+  Grid,
+  SimpleGrid,
+  Center,
+} from "@chakra-ui/react";
 import ScreenWrapper from "../../layout/ScreenWrapper";
 import { Link as ReachLink, LocationProvider, Router } from "@reach/router";
 import Calendar from "../../modules/Calendar";
@@ -7,9 +17,8 @@ import DailyVerse from "../../modules/DailyVerse";
 import Header from "../../layout/Header";
 import Main from "../../layout/Main";
 import { Heading2 } from "../../components";
-import { FiCalendar, FiBookOpen } from "react-icons/fi";
+import { FiCalendar, FiBookOpen, FiClock } from "react-icons/fi";
 import { Clock, Weather } from "../../modules";
-import Test from "../../modules/Test";
 import { history, navigate } from "../../utils/hooks/useHistory";
 import SocketContext from "../../utils/context/socketContext";
 
@@ -18,17 +27,14 @@ const AppScreen = () => {
     <ScreenWrapper>
       <Stack spacing={8} p="8px" w="100%" h="100%">
         <Fade in={true} exit={true}>
-          <Header>
-            <Clock />
-            <Weather />
-          </Header>
           <Main>
             <LocationProvider history={history}>
               <Router>
                 <Dashboard path="/" />
+                <Clock path="clock" />
+                <Weather path="weather" />
                 <Calendar path="calendar" />
                 <DailyVerse path="daily-verse" />
-                <Test path="test" />
               </Router>
             </LocationProvider>
           </Main>
@@ -54,10 +60,12 @@ const ModuleLink = ({ name, icon, to, ...props }) => {
       }}
       display="flex"
       alignItems="center"
-      p="16px"
+      p="1em"
+      border="1px solid"
+      rounded="md"
     >
       <LinkIcon icon={icon} />
-      <Heading2>
+      <Heading2 fontSize="4xl">
         <LinkOverlay as={ReachLink} to={to}>
           {name}
         </LinkOverlay>
@@ -69,6 +77,14 @@ const ModuleLink = ({ name, icon, to, ...props }) => {
 const Dashboard = ({ ...props }) => {
   const socket = useContext(SocketContext);
 
+  socket.on("clock", () => {
+    navigate("app/clock");
+  });
+
+  socket.on("weather", () => {
+    navigate("app/weather");
+  });
+
   socket.on("calendar", () => {
     navigate("app/calendar");
   });
@@ -78,21 +94,24 @@ const Dashboard = ({ ...props }) => {
   });
 
   return (
-    <Stack p={16} mx="auto" w="80%" spacing={4}>
-      <ModuleLink
-        socket={socket}
-        name="Calendar"
-        icon={FiCalendar}
-        to="calendar"
-      />
-      <Line />
-      <ModuleLink name="Daily Verse" icon={FiBookOpen} to="daily-verse" />
-    </Stack>
+    <Center h="80vh">
+      <SimpleGrid columns={2} spacing={5}>
+        <ModuleLink name="Clock" icon={FiClock} to="clock" />
+        <ModuleLink name="Weather" icon={FiClock} to="weather" />
+        <ModuleLink
+          socket={socket}
+          name="Calendar"
+          icon={FiCalendar}
+          to="calendar"
+        />
+        <ModuleLink name="Daily Verse" icon={FiBookOpen} to="daily-verse" />
+      </SimpleGrid>
+    </Center>
   );
 };
 
 const LinkIcon = ({ icon }) => {
-  return <Icon mr="24px" w="48px" h="48px" as={icon} />;
+  return <Icon mr="24px" w="40px" h="40px" as={icon} />;
 };
 
 export default AppScreen;
