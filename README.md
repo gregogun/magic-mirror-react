@@ -4,7 +4,7 @@
 
 An IoT project inspired by the original [Magic Mirror](https://magicmirror.builders/) by Michael Teeuw.
 
-Initially, I'd hope to clone thie original repo and add some customizations on top of the default modules, however it is written in Angular which I haven't got knowledge of, so I endeavoured to see if I could create similar functionality using React on the client.
+Initially, I'd hope to clone the original repo and add some customizations on top of the default modules, however it is written in Angular which I haven't got knowledge of, so I endeavoured to see if I could create similar functionality using React on the client.
 
 If you'd like to get an idea of how this app works, you can check out the [Figma Protoype](https://www.figma.com/proto/miwkYYZhCHXaGtNZ2O13bb/MyMagicMirror-UI?page-id=210%3A1&node-id=205%3A116&viewport=194%2C368%2C0.16894406080245972&scaling=scale-down).
 
