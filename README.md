@@ -49,6 +49,7 @@ yarn run start
 
 I aim to continue to build and extend this application over time. Here are some of the key features I'm either working on, or planning to work on: 
 
+- Scale - This was initally built for a single use-case (a birthday present for my mum!), but I hope to scale this to allow others to pull this code and customise their own experiences with this, which will require changes to the structure of the codebase. Some approaches are mentioned below in 'Customisation'.
 - Next.js - Migrate from pure React client and separate server to Next.js via API routes.
 - GraphQL - Migrate REST infastructure to a work with or be replaced by a GraphQL server, using Apollo to interact with data on the client.
 - Testing - Write Unit and Integration tests to gain confidence that our application is working as we expect it to.
