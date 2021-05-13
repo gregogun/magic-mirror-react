@@ -43,13 +43,14 @@ yarn run start
 - [React](https://reactjs.org/)
 - [React-DOM](https://www.npmjs.com/package/react-dom)
 - [Chakra UI](https://chakra-ui.com/)
+- [Socket IO](https://socket.io/)
 
 ## Roadmap
 
 I aim to continue to build and extend this application over time. Here are some of the key features I'm either working on, or planning to work on: 
 
-- Next.js - Migrate from pure React client and separate server to Next.js
-- GraphQL - Migrate REST infastructure to a GraphQL server, using Apollo to interact with data on the client.
+- Next.js - Migrate from pure React client and separate server to Next.js via API routes.
+- GraphQL - Migrate REST infastructure to a work with or be replaced by a GraphQL server, using Apollo to interact with data on the client.
 - Testing - Write Unit and Integration tests to gain confidence that our application is working as we expect it to.
 - Customisation
     1. Module approach - Users can have total control of what data they wish to have on their mirror, as well as setting some default styling options. This will most likely be done through a config file.
